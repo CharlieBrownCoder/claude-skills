@@ -1,0 +1,12 @@
+{
+  "name": "claude-skills",
+  "owner": { "name": "CharlieBrownCoder" },
+  "description": "Nate's internal Claude Code skills, shared across his repos and orgs.",
+  "plugins": [
+    {
+      "name": "article-writer",
+      "source": "./plugins/article-writer",
+      "description": "Publish-ready blog and article drafts in any brand's voice, from a playbook, a customer question or an existing article."
+    }
+  ]
+}

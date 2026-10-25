@@ -141,22 +141,44 @@ Then the profile's repo checks run, if any.
 
 ## 9. Install in a repo
 
-`.claude/settings.json`:
+Checked against the Claude Code plugin docs on 2026-10-25 and by a real
+install (§13).
+
+`.claude/settings.json` in the repo:
 
 ```json
 {
   "extraKnownMarketplaces": {
-    "cb-skills": {
-      "source": { "source": "github", "repo": "CharlieBrownCoder/claude-skills" }
+    "claude-skills": {
+      "source": { "source": "github", "repo": "CharlieBrownCoder/claude-skills" },
+      "autoUpdate": true
     }
   },
-  "enabledPlugins": { "article-writer@cb-skills": true }
+  "enabledPlugins": { "article-writer@claude-skills": true }
 }
 ```
 
-Plus the repo's `.claude/article-writer.md`. To verify in build step 2: the
-exact settings keys against the current Claude Code docs, and that a session
-in another org (cloud sessions included) can read the private marketplace.
+The key under `extraKnownMarketplaces` must be the marketplace's own `name`
+(`claude-skills`). Or run, in the repo:
+`claude plugin marketplace add CharlieBrownCoder/claude-skills --scope project`
+then `claude plugin install article-writer@claude-skills --scope project`.
+Then add the repo's `.claude/article-writer.md`.
+
+What the docs say limits it:
+
+- **Local Claude Code only.** The repo's settings are honoured after the
+  folder's trust dialog is accepted. Private-repo access comes from the
+  machine's own git credentials (SSH key in an agent, or `gh auth login` and
+  `gh auth setup-git`); Claude Code has no token of its own, and background
+  auto-update fails quietly if a credential would need a prompt.
+- **Cloud sessions (claude.ai/code) do not install plugins a repo enables.**
+  The documented path for cloud is the claude.ai organization's managed
+  settings (Organization settings > Claude Code > Managed settings), set by an
+  Owner, which applies to every member of that claude.ai org. Each claude.ai
+  org that should have the skill in the cloud needs it set there, or the
+  skill uploaded as a claude.ai skill. Open decision, §12.
+- **Invocation.** Claude loads the skill from its description; by hand it is
+  `/article-writer:article-writer`.
 
 ## 10. Keeping it in step with the brain
 
@@ -174,10 +196,40 @@ skill on purpose, never by memory.
    (ChatGPT ads, draft due Nov 30); compare against an approved article.
 4. A second profile in one non-Narsil repo to prove the core is brand-neutral.
 
-## 12. Open, not blocking
+## 12. Open
 
+- **Cloud sessions (Nate's call).** Repo settings do not reach claude.ai/code.
+  Options: (a) the claude.ai org's managed settings, per org; (b) upload the
+  skill folder as a claude.ai skill, per org, a copy to keep in step; (c)
+  local Claude Code only. The skill folder is written to work either way: it
+  names its files relative to its own folder, never `${CLAUDE_PLUGIN_ROOT}`.
 - Move the voice skills (`narsil-voice`, `manifest-voice`, `jaxhumor-voice`)
   into this marketplace so each has one copy. Recommended, separate step.
-- A claude.ai upload for use outside Claude Code: per claude.ai org, a copy to
-  keep in step; only if needed.
 - Client sites: a profile per client repo works the same way; no core change.
+
+## 13. As built (step 2, 2026-10-25)
+
+- The marketplace and plugin pass `claude plugin validate` (the plugin with
+  `--strict`). A local install (`claude plugin marketplace add` then
+  `claude plugin install article-writer@claude-skills`) reports one skill,
+  about 200 tokens always on and about 1.4k when it runs.
+- `check_article.py` runs eight checks: required frontmatter, description
+  length, em dashes, banned words, the internal-only heading, image
+  placeholders, the source log, and the five placements.
+- Proof: 18 input mutations each fire exactly their named check on a clean
+  fixture, plus boundary, profile and exit-code tests (14 tests); and 22
+  mutations of the checker itself are each caught by the suite
+  (`tests/mutations.py`, run in CI). One survived first: an off-by-one in the
+  description limit, invisible to a fixture far over the limit; a 155/156
+  boundary test now catches it.
+- Calibration on narsilcreative.com's 88 live articles (Narsil checks
+  block): the 7 written to the current standard (2026-10-22 on) pass with no
+  warning. The rest fail only on the source log, a convention that predates
+  them, except `humanize-ai-content`, which quotes slop words as specimens
+  (exempt in the site's own gates too). Read literally, the five placements
+  missed on 44 approved articles, mostly question keywords reworded in the
+  title ("should i run google ads" in "Should You Run Google Ads?"). So a
+  placement miss is a WARN by default, and `placements_fail: yes` makes it
+  hard. A new rule for the writer, not a finding against those articles.
+- The slug placement passes when the slug carries at least half the
+  keyword's content words, plurals folded: slugs here are short on purpose.

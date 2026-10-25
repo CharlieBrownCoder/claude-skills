@@ -1,0 +1,8 @@
+{
+  "name": "article-writer",
+  "description": "Publish-ready blog and article drafts in any brand's voice: brief, safety pass, internal links, source log and portable checks. Brand rules come from the repo's .claude/article-writer.md.",
+  "version": "0.1.0",
+  "author": { "name": "CharlieBrownCoder" },
+  "repository": "https://github.com/CharlieBrownCoder/claude-skills",
+  "keywords": ["blog", "article", "seo", "content"]
+}

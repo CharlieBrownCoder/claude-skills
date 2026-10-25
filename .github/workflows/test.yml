@@ -1,0 +1,20 @@
+name: test
+on:
+  push:
+  pull_request:
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checker tests
+        run: python3 -m unittest discover -s plugins/article-writer/tests -v
+      - name: Every checker mutation is caught
+        run: python3 plugins/article-writer/tests/mutations.py
+      - name: Manifests are valid JSON
+        run: |
+          python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
+          python3 -m json.tool plugins/article-writer/.claude-plugin/plugin.json > /dev/null
