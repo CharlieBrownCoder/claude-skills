@@ -198,11 +198,29 @@ skill on purpose, never by memory.
 
 ## 12. Open
 
-- **Cloud sessions (Nate's call).** Repo settings do not reach claude.ai/code.
-  Options: (a) the claude.ai org's managed settings, per org; (b) upload the
-  skill folder as a claude.ai skill, per org, a copy to keep in step; (c)
-  local Claude Code only. The skill folder is written to work either way: it
-  names its files relative to its own folder, never `${CLAUDE_PLUGIN_ROOT}`.
+- **Cloud sessions: DECIDED 2026-11-02 (Nate: "Managed settings").** Each
+  claude.ai org that should have the skill in cloud sessions sets it in
+  Organization settings > Claude Code > Managed settings (an Owner does
+  this), with the same two keys as §9:
+
+  ```json
+  {
+    "extraKnownMarketplaces": {
+      "claude-skills": {
+        "source": { "source": "github", "repo": "CharlieBrownCoder/claude-skills" },
+        "autoUpdate": true
+      }
+    },
+    "enabledPlugins": { "article-writer@claude-skills": true }
+  }
+  ```
+
+  Consequences: the skill is on for every member of that org in every repo
+  (about 200 tokens always on); no claude.ai skill upload, so there is one
+  copy. Not yet seen working: that a cloud session can read this PRIVATE repo
+  when it fetches the marketplace. The first cloud session after the setting
+  is saved is the proof; if it cannot, the fix is access for the Claude
+  GitHub App to this repo, not a second copy.
 - Move the voice skills (`narsil-voice`, `manifest-voice`, `jaxhumor-voice`)
   into this marketplace so each has one copy. Recommended, separate step.
 - Client sites: a profile per client repo works the same way; no core change.
