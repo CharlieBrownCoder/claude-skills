@@ -1,0 +1,8 @@
+{
+  "name": "narsil-voice",
+  "description": "The Narsil voice for Narsil Creative (the AI SEO agency) and Narsil SEO (the software): rules, banned and rationed words, the humanizer pass, and deslop_check.py. Load before writing anything for either brand.",
+  "version": "1.0.0",
+  "author": { "name": "CharlieBrownCoder" },
+  "repository": "https://github.com/CharlieBrownCoder/claude-skills",
+  "keywords": ["voice", "brand", "narsil", "copy"]
+}

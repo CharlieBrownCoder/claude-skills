@@ -221,8 +221,15 @@ skill on purpose, never by memory.
   when it fetches the marketplace. The first cloud session after the setting
   is saved is the proof; if it cannot, the fix is access for the Claude
   GitHub App to this repo, not a second copy.
-- Move the voice skills (`narsil-voice`, `manifest-voice`, `jaxhumor-voice`)
-  into this marketplace so each has one copy. Recommended, separate step.
+- **Voice skills: MOVED 2026-11-02 (Nate: "move the voice skills into the
+  marketplace").** `narsil-voice` and `manifest-voice` are plugins here,
+  copied byte for byte from the claude.ai synced skills, and this repo is
+  their home from that date. `jaxhumor-voice` was NOT moved: the synced
+  skill is a stub with no rules (its description is "Let's create a voice
+  specific to Jax Humor"); Jax Humor's voice lives inside the
+  `jaxhumor-writing` skill. Still owed for one copy each: removing the
+  claude.ai synced copies, and replacing the vendored
+  `narsil-brain-v1/infra/skills/narsil-voice` in Narsil-Creative/narsil.
 - Client sites: a profile per client repo works the same way; no core change.
 
 ## 13. As built (step 2, 2026-10-25)

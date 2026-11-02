@@ -12,9 +12,11 @@ jobs:
           python-version: "3.12"
       - name: Checker tests
         run: python3 -m unittest discover -s plugins/article-writer/tests -v
+      - name: narsil-voice linter tests
+        run: python3 -m unittest discover -s plugins/narsil-voice/tests -v
       - name: Every checker mutation is caught
         run: python3 plugins/article-writer/tests/mutations.py
       - name: Manifests are valid JSON
         run: |
           python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
-          python3 -m json.tool plugins/article-writer/.claude-plugin/plugin.json > /dev/null
+          for f in plugins/*/.claude-plugin/plugin.json; do python3 -m json.tool "$f" > /dev/null; done

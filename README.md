@@ -6,6 +6,12 @@ copy serves every repo and org. Private; internal use only.
 | Plugin | What it does |
 |---|---|
 | `article-writer` | Publish-ready blog and article drafts in any brand's voice, from a playbook, a customer question or an existing article. Brand rules come from the repo's `.claude/article-writer.md`. Design: `docs/article-writer-design.md`. |
+| `narsil-voice` | The Narsil voice (Narsil Creative and Narsil SEO), with the humanizer pass and `deslop_check.py`. |
+| `manifest-voice` | The Manifest brand voice. |
+
+The voice plugins are the ONLY copy of each voice from 2026-11-02. Edit them
+here and bump the plugin's `version`; each plugin's README says what other
+copies are now stale. A repo turns on only the voice it writes in.
 
 ## Use it in a repo
 
@@ -19,7 +25,10 @@ copy serves every repo and org. Private; internal use only.
          "autoUpdate": true
        }
      },
-     "enabledPlugins": { "article-writer@claude-skills": true }
+     "enabledPlugins": {
+       "article-writer@claude-skills": true,
+       "narsil-voice@claude-skills": true
+     }
    }
    ```
 
@@ -44,6 +53,7 @@ See the design record, §9 and §12, for the options.
 ```
 python3 -m unittest discover -s plugins/article-writer/tests -v   # the checker's tests
 python3 plugins/article-writer/tests/mutations.py                 # every checker mutation must be caught
+python3 -m unittest discover -s plugins/narsil-voice/tests        # the voice linter's own tests
 claude plugin validate . && claude plugin validate ./plugins/article-writer --strict
 ```
 
