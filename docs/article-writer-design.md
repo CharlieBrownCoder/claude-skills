@@ -251,3 +251,21 @@ skill on purpose, never by memory.
   hard. A new rule for the writer, not a finding against those articles.
 - The slug placement passes when the slug carries at least half the
   keyword's content words, plurals folded: slugs here are short on purpose.
+
+## 14. VERIFY-PENDING (adopted 2026-11-02, Nate: "yes, adopt VERIFY-PENDING in the skill")
+
+Found by the step 3 trial (Narsil calendar #12, ChatGPT ads): OpenAI's help
+and announcement pages return 403 to the build container, directly and
+through archives, and the rule "a claim with no source you can open today is
+cut" would have gutted an article whose substance is that platform's rules.
+The site already used `<!-- LINK-PENDING: slug -->` for the same shape of
+debt, so the skill now has its twin.
+
+- A draft may keep a claim whose primary source exists but cannot be opened
+  from the session, only with `<!-- VERIFY-PENDING: claim; source -->` after
+  it and a `NOT OPENED` line in the source log.
+- `check_article.py --draft` reports each marker as a WARN; without
+  `--draft` (promote) each FAILS. An empty marker fails either way. Only
+  `<!-- VERIFY-PENDING` opens a marker; the word in prose does not.
+- Proof: 19 input mutations, 17 tests, 29 checker mutations, each caught.
+- Plugin version 0.2.0.

@@ -69,6 +69,7 @@ MUTATIONS = {
     "keyword out of the description": ("placements", 'description: "How to write a meta description that earns', 'description: "A meta description that earns'),
     "keyword out of the slug": ("placements", "slug: write-meta-description", "slug: snippet-guide"),
     "keyword out of the first sentence": ("placements", "To write a meta description that gets clicks, lead", "To get clicks, lead"),
+    "pending claim left in": ("verify_pending", "## Why it matters", "<!-- VERIFY-PENDING: rankings claim; open developers.google.com -->\n\n## Why it matters"),
     "keyword out of a body H1": ("placements", "To write a meta description", "# Snippets that win\n\nTo write a meta description"),
 }
 
@@ -156,7 +157,7 @@ class Profile(unittest.TestCase):
 class Cli(unittest.TestCase):
     """Exit codes and severities, through the real entry point."""
 
-    def run_cli(self, text, profile=None):
+    def run_cli(self, text, profile=None, draft=False):
         with tempfile.TemporaryDirectory() as d:
             art = os.path.join(d, "a.md")
             open(art, "w").write(text)
@@ -165,6 +166,8 @@ class Cli(unittest.TestCase):
                 prof = os.path.join(d, "p.md")
                 open(prof, "w").write(profile)
                 cmd += ["--profile", prof]
+            if draft:
+                cmd.append("--draft")
             p = subprocess.run(cmd, capture_output=True, text=True)
             return p.returncode, p.stdout + p.stderr
 
@@ -186,6 +189,32 @@ class Cli(unittest.TestCase):
         code, out = self.run_cli(text, "```checks\nplacements_fail: yes\n```\n")
         self.assertEqual(code, 1, out)
         self.assertIn("FAIL placements", out)
+
+    PENDING = "<!-- VERIFY-PENDING: rankings claim; open developers.google.com -->\n\n## Why it matters"
+
+    def test_pending_claim_warns_in_a_draft_and_fails_at_promote(self):
+        # Mutations: the draft flag ignored (always FAIL), or honoured
+        # everywhere (always WARN). Both twins are asserted.
+        text = GOOD.replace("## Why it matters", self.PENDING)
+        code, out = self.run_cli(text, draft=True)
+        self.assertEqual(code, 0, out)
+        self.assertIn("WARN verify_pending: line", out)
+        self.assertIn("rankings claim", out)
+        code, out = self.run_cli(text)
+        self.assertEqual(code, 1, out)
+        self.assertIn("FAIL verify_pending", out)
+
+    def test_empty_marker_fails_even_in_a_draft(self):
+        text = GOOD.replace("## Why it matters", "<!-- VERIFY-PENDING -->\n\n## Why it matters")
+        code, out = self.run_cli(text, draft=True)
+        self.assertEqual(code, 1, out)
+        self.assertIn("names no claim or source", out)
+
+    def test_the_word_in_prose_is_not_a_marker(self):
+        # Positive twin: a source log that mentions the convention is clean.
+        text = GOOD.replace("Internal: none.", "Internal: none. Claims marked VERIFY-PENDING above were opened.")
+        code, out = self.run_cli(text)
+        self.assertEqual(code, 0, out)
 
     def test_bad_profile_exits_2(self):
         code, out = self.run_cli(GOOD, "```checks\nbogus: 1\n```\n")

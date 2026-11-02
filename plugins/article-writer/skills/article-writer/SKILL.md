@@ -61,12 +61,20 @@ end. Respect the profile's length, byline, frontmatter and FAQ rules.
   before this one's publish date. Descriptive anchors, never "click here".
 - Source log: an HTML comment at the foot of the article in the format of
   `references/source-log.md`. Every outside claim in the piece has a line.
-  If a claim has no source you could open today, cut the claim.
+  If a claim has no source you could open today, cut it, with one
+  exception: when its primary source exists but cannot be opened from this
+  session (a 403, a bot wall, a login), keep the claim only with a
+  `<!-- VERIFY-PENDING: claim; source to open -->` marker right after it
+  (`references/source-log.md`). A marker is a debt, never a source: the
+  draft cannot be promoted until a person has opened each source, corrected
+  or cut the claim, and removed the marker.
 
 ## Step 6: checks
 
 1. Run the core checks:
-   `python3 <this skill's folder>/scripts/check_article.py <draft> --profile .claude/article-writer.md`
+   `python3 <this skill's folder>/scripts/check_article.py <draft> --profile .claude/article-writer.md --draft`
+   (`--draft` lets VERIFY-PENDING markers warn; without it they fail, which
+   is how the check runs at promote.)
    Fix every FAIL. A WARN (a keyword placement that reads literally wrong,
    such as a question keyword reworded in the title) is fixed or explained
    in the report, one line each. Never edit the checker or the profile to
@@ -80,7 +88,8 @@ Save to the profile's drafts folder (never straight into the published
 folder) and report, in this order:
 
 1. The file path, the title, the keyword, the word count.
-2. The claims you could not verify, and what you cut.
+2. The claims you could not verify: each VERIFY-PENDING marker with the
+   source to open, and what you cut.
 3. The calls the safety pass made (overlap, attribution, freshness).
 4. The decisions the user still has to make, one at a time.
 

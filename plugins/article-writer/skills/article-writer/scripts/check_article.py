@@ -3,7 +3,11 @@
 
 Usage:
     python3 check_article.py ARTICLE.md [--profile .claude/article-writer.md]
-                             [--keyword "target phrase"]
+                             [--keyword "target phrase"] [--draft]
+
+--draft: the file is still a draft. A VERIFY-PENDING marker (a claim whose
+source has not been opened yet) is then a WARN; without --draft it FAILS,
+so nothing carrying one is promoted.
 
 Exit 0 when every check passes, 1 when any fails, 2 on a usage or profile
 error (an unreadable file, an unknown key in the profile's checks block).
@@ -105,6 +109,9 @@ EM_DASH = "\u2014"
 INTERNAL_HEADING = re.compile(
     r"^#{1,6}\s*Source transcript\b|INTERNAL\s*\u2014\s*never ships", re.I | re.M)
 PLACEHOLDER = re.compile(r"\[IMAGE:", re.I)
+# A claim kept in a draft before its source could be opened. Read from the
+# whole file: the marker is an HTML comment, which the copy text drops.
+VERIFY_MARKER = re.compile(r"<!--\s*VERIFY-PENDING\b(.*?)-->", re.S)
 SOURCE_LOG = re.compile(r"<!--\s*Sources checked (\d{4}-\d{2}-\d{2}):(.*?)-->", re.S)
 
 PLACEMENTS = ("title", "description", "slug", "h1", "first_sentence")
@@ -291,6 +298,20 @@ def check_placeholder(copy_text):
     return ["an [IMAGE: ...] placeholder is still in the copy"] if PLACEHOLDER.search(copy_text) else []
 
 
+def check_verify_pending(full_text):
+    # Mutation: add "<!-- VERIFY-PENDING: claim; source to open -->". Each
+    # marker must say what to verify and where; an empty one says nothing.
+    out = []
+    for m in VERIFY_MARKER.finditer(full_text):
+        line = full_text.count("\n", 0, m.start()) + 1
+        detail = m.group(1).lstrip(" :").strip()
+        if not detail:
+            out.append(f"line {line}: VERIFY-PENDING marker names no claim or source")
+        else:
+            out.append(f"line {line}: VERIFY-PENDING: {detail[:90]}")
+    return out
+
+
 def check_source_log(full_text, cfg):
     # Mutations: delete the source log; or empty it to its opening line.
     if cfg["source_log"] == "optional":
@@ -356,6 +377,7 @@ def run(text: str, cfg: dict[str, str], keyword: str | None = None) -> dict[str,
         "placeholder": check_placeholder(copy_text),
         "source_log": check_source_log(text, cfg),
         "placements": check_placements(fields, body, cfg, keyword),
+        "verify_pending": check_verify_pending(text),
     }
 
 
@@ -365,12 +387,15 @@ def run(text: str, cfg: dict[str, str], keyword: str | None = None) -> dict[str,
 # calibration (narsilcreative.com, 88 approved articles, 2026-10-25) a hard
 # failure fired on 44 of them. So a placement miss is a WARN the report must
 # fix or explain, and a profile that wants it hard sets placements_fail: yes.
-def severity(name: str, cfg: dict[str, str]) -> str:
+def severity(name: str, cfg: dict[str, str], draft: bool = False, problem: str = "") -> str:
     if name == "placements":
         flag = cfg["placements_fail"].lower()
         if flag not in ("yes", "no"):
             raise UsageError("placements_fail must be yes or no")
         return "FAIL" if flag == "yes" else "WARN"
+    if name == "verify_pending":
+        # A draft may carry a pending claim; an empty marker is never allowed.
+        return "WARN" if draft and "names no claim" not in problem else "FAIL"
     return "FAIL"
 
 
@@ -379,6 +404,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("article")
     ap.add_argument("--profile")
     ap.add_argument("--keyword")
+    ap.add_argument("--draft", action="store_true",
+                    help="the file is a draft: VERIFY-PENDING markers warn instead of failing")
     args = ap.parse_args(argv)
     try:
         cfg = read_profile(args.profile)
@@ -390,8 +417,8 @@ def main(argv: list[str] | None = None) -> int:
     failed = warned = 0
     try:
         for name, problems in results.items():
-            level = severity(name, cfg)
             for p in problems:
+                level = severity(name, cfg, args.draft, p)
                 print(f"{level} {name}: {p}")
                 if level == "FAIL":
                     failed += 1

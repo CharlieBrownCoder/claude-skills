@@ -31,6 +31,13 @@ M=[
 ("banned_allow unchecked", '    if unknown:\n        raise', '    if False:\n        raise'),
 ("placements severity always WARN", 'return "FAIL" if flag == "yes" else "WARN"', 'return "WARN"'),
 ("placements severity always FAIL", 'return "FAIL" if flag == "yes" else "WARN"', 'return "FAIL"'),
+("verify_pending off", '            out.append(f"line {line}: VERIFY-PENDING: {detail[:90]}")', '            pass'),
+("empty marker accepted", '            out.append(f"line {line}: VERIFY-PENDING marker names no claim or source")', '            pass'),
+("verify_pending not wired", '        "verify_pending": check_verify_pending(text),', ''),
+("draft flag ignored", 'return "WARN" if draft and "names no claim" not in problem else "FAIL"', 'return "FAIL"'),
+("draft flag everywhere", 'return "WARN" if draft and "names no claim" not in problem else "FAIL"', 'return "WARN" if "names no claim" not in problem else "FAIL"'),
+("empty marker warns in a draft", 'return "WARN" if draft and "names no claim" not in problem else "FAIL"', 'return "WARN" if draft else "FAIL"'),
+("marker read from copy only", 'check_verify_pending(text)', 'check_verify_pending(copy_text)'),
 ("exit 1 dropped", '        return 1\n    note', '        return 0\n    note'),
 ]
 src=open(ORIG).read(); bad=0

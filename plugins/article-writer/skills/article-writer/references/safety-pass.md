@@ -40,7 +40,9 @@ a policy, a price, a limit, a deprecation). Check each against the
 platform's own documentation today, and log the URL and what it says. A
 claim the documentation no longer supports is cut or corrected, and the
 change is reported. A source document's date is not evidence that it is
-still true.
+still true. If the documentation exists but cannot be opened from this
+session, see VERIFY-PENDING in `source-log.md`: the claim stays only with a
+marker, and only in a draft.
 
 ## 4. Proof and promises
 
