@@ -5,9 +5,10 @@ them.
 
 ## 1. Overlap (do we already have this?)
 
-Search the profile's published and drafts folders for the keyword, its
-plural and singular, and two or three close variants (in titles, slugs,
-keyword fields and H2s).
+Search the profile's published articles (its folder, or the output of its
+listing command when they live in a CMS) and its drafts folder for the
+keyword, its plural and singular, and two or three close variants (in
+titles, slugs, keyword fields and H2s).
 
 - A page already serves the same intent: stop. Propose a refresh of that
   page, or a different angle with a different keyword. Two pages for one

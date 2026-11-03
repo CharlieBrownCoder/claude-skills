@@ -55,8 +55,11 @@ The owner's experience is the content; you collect it, then write it.
 
 ## refresh: an existing article is brought up to date
 
-1. Keep the slug, the keyword and the original publish date. Set the
-   updated date to the day the refresh goes live.
+1. Read the published article in full: the file, or through the profile's
+   "Read one article" line when it lives in a CMS. Keep the slug, the keyword
+   and the original publish date. Set the updated date to the day the
+   refresh goes live; if the platform has no updated-date field, say so in
+   the report and record the refresh date in the source log instead.
 2. Re-run freshness on every claim in the article and every line of its
    source log. Update the log's date and lines.
 3. Re-read the ranking pages for the keyword (method, step 3). Add what the

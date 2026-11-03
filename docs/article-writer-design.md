@@ -276,3 +276,40 @@ debt, so the skill now has its twin.
   `<!-- VERIFY-PENDING` opens a marker; the word in prose does not.
 - Proof: 19 input mutations, 17 tests, 29 checker mutations, each caught.
 - Plugin version 0.2.0.
+
+## 15. Build step 4: a second brand (Manifest, 2026-11-03)
+
+Nate: "start build step 4 on the Manifest repo". Profile and trial in
+`TheManifestApp/manifest-website`, branch `claude/article-writer-profile`.
+The trial ran REFRESH mode (the one the Narsil trial did not exercise) on
+the live post /blog/most-common-goals-people-set/.
+
+What the second brand proved about the core:
+
+- **Published articles are not always a folder.** Manifest's blog lives in
+  Sanity. The profile can now name a listing command and a "read one
+  article" command (the repo gained `scripts/blog-posts.py`, stdlib, reading
+  the public dataset), and a "Promote" line says how a draft goes live.
+  Plugin 0.3.0.
+- **Not every platform has an updated date.** Sanity's post has only
+  `pubDate`; refresh mode now records the refresh in the source log and the
+  report when the platform has no field for it.
+- **A brand ban is a phrase, not always a word.** The first Manifest profile
+  banned "dominate" and failed a plain sentence ("Health and fitness
+  dominate the top"); the rule is about hustle phrasing, so the profile bans
+  "dominate your". The checker needed no change: `banned_extra` already
+  takes phrases.
+- **Everything else held unchanged:** the brief, the safety pass, the
+  source log, VERIFY-PENDING (none needed: every source opened), the eight
+  core checks, the Manifest voice plugin in place of narsil-voice.
+
+What the refresh found in the live post: two wrong Strava claims (Quitter's
+Day's origin, and "twice as much activity" where Strava reported 21% further
+and 10% longer), one unsourced statistic (34% of under-30s), two unsourced
+trend claims, two core-banned words, a 158-character description and no
+source log. The draft fixes all of them and keeps the author's wording
+everywhere else.
+
+Open for Nate: manifest-voice says 1,000-1,500 words for a blog article and
+manifest-blog-post says 700-1,100; the profile follows the newer, blog-specific
+skill until he decides.

@@ -56,8 +56,9 @@ end. Respect the profile's length, byline, frontmatter and FAQ rules.
 
 ## Step 5: links and source log
 
-- Internal links: the profile's count and targets. Link only to pages that
-  exist now, and, when the profile sets date causality, only to pages dated
+- Internal links: the profile's count and targets, chosen from its published
+  articles (the folder, or the listing command's output). Link only to pages
+  that exist now, and, when the profile sets date causality, only to pages dated
   before this one's publish date. Descriptive anchors, never "click here".
 - Source log: an HTML comment at the foot of the article in the format of
   `references/source-log.md`. Every outside claim in the piece has a line.
@@ -93,8 +94,8 @@ folder) and report, in this order:
 3. The calls the safety pass made (overlap, attribution, freshness).
 4. The decisions the user still has to make, one at a time.
 
-Stop there. Promoting a draft, scheduling it, and committing or pushing are
-the user's call.
+Stop there. Promoting a draft (the profile's "Promote" line), scheduling
+it, and committing or pushing are the user's call.
 
 ## Hard rules
 

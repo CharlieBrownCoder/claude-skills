@@ -22,8 +22,13 @@ Lists are comma-separated. Unknown keys fail the checker, so a typo is loud.
 - Reader: <who reads this, one sentence>
 
 ## Where things live
-- Published articles: <path>
-- Drafts: <path>
+- Published articles: <path, or a command that prints title, slug, date and
+  URL for every published article, when they live in a CMS>
+- Read one article: <how to get one published article's full text, when they
+  live in a CMS (refresh mode needs it)>
+- Drafts: <path in the repo where the skill saves drafts>
+- Promote: <how a draft goes live: move the file, paste into the CMS, run an
+  import script; and who does it>
 - Source library: <path to playbooks or notes, or "none">
 - Editorial guide: <path, or "none">
 
