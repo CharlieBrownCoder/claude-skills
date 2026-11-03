@@ -227,7 +227,11 @@ skill on purpose, never by memory.
   their home from that date. `jaxhumor-voice` was NOT moved: the synced
   skill is a stub with no rules (its description is "Let's create a voice
   specific to Jax Humor"); Jax Humor's voice lives inside the
-  `jaxhumor-writing` skill. Still owed for one copy each: removing the
+  `jaxhumor-writing` skill. **UPDATE 2026-11-03 (Nate: "give Jax Humor its
+  own voice plugin"):** `jaxhumor-voice` 0.1 is a plugin here, built only
+  from what `jaxhumor-writing` states; the nine joke patterns, the Conditions
+  Advisory and the full Hard Nos were not found and are listed as owed, not
+  invented. Still owed for one copy each: removing the
   claude.ai synced copies, and replacing the vendored
   `narsil-brain-v1/infra/skills/narsil-voice` in Narsil-Creative/narsil.
 - Client sites: a profile per client repo works the same way; no core change.

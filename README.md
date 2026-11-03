@@ -8,6 +8,7 @@ copy serves every repo and org. Private; internal use only.
 | `article-writer` | Publish-ready blog and article drafts in any brand's voice, from a playbook, a customer question or an existing article. Brand rules come from the repo's `.claude/article-writer.md`. Design: `docs/article-writer-design.md`. |
 | `narsil-voice` | The Narsil voice (Narsil Creative and Narsil SEO), with the humanizer pass and `deslop_check.py`. |
 | `manifest-voice` | The Manifest brand voice. |
+| `jaxhumor-voice` | The Jax Humor voice. Version 0.1 is partial: its README says what is still owed. |
 
 The voice plugins are the ONLY copy of each voice from 2026-11-02. Edit them
 here and bump the plugin's `version`; each plugin's README says what other

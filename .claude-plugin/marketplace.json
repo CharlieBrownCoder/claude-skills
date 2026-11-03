@@ -19,6 +19,11 @@
       "name": "manifest-voice",
       "source": "./plugins/manifest-voice",
       "description": "The Manifest brand voice: principles, mechanics, tone by context, blog and email rules."
+    },
+    {
+      "name": "jaxhumor-voice",
+      "source": "./plugins/jaxhumor-voice",
+      "description": "The Jax Humor voice (0.1, partial): deadpan, specific, affectionate Jacksonville comedy."
     }
   ]
 }

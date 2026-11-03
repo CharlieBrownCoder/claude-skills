@@ -1,0 +1,8 @@
+{
+  "name": "jaxhumor-voice",
+  "description": "The Jax Humor voice: deadpan, specific, affectionate Jacksonville comedy for jaxhumor.com. Version 0.1, partial: the joke patterns and the Conditions Advisory are named but not yet written down.",
+  "version": "0.1.0",
+  "author": { "name": "CharlieBrownCoder" },
+  "repository": "https://github.com/CharlieBrownCoder/claude-skills",
+  "keywords": ["voice", "brand", "jax-humor", "copy"]
+}
