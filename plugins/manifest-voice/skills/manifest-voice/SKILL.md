@@ -133,7 +133,7 @@ Every article must include:
 - Excerpt
 
 ### Length
-Blog articles target 1,000–1,500 words. Every paragraph earns its place.
+Blog articles target 700–1,100 words. Every paragraph earns its place.
 
 ### Disclaimers
 - Financial content (debt, saving, investing): include a brief note that this is not personal financial advice.

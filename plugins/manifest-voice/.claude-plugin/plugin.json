@@ -1,7 +1,7 @@
 {
   "name": "manifest-voice",
   "description": "The Manifest brand voice: who Manifest talks to, voice principles, mechanics, tone by context, blog and email rules, and rewrite examples. Load before writing anything for Manifest.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": { "name": "CharlieBrownCoder" },
   "repository": "https://github.com/CharlieBrownCoder/claude-skills",
   "keywords": ["voice", "brand", "manifest", "copy"]

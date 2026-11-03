@@ -310,6 +310,6 @@ trend claims, two core-banned words, a 158-character description and no
 source log. The draft fixes all of them and keeps the author's wording
 everywhere else.
 
-Open for Nate: manifest-voice says 1,000-1,500 words for a blog article and
-manifest-blog-post says 700-1,100; the profile follows the newer, blog-specific
-skill until he decides.
+Blog length, SETTLED 2026-11-03 (Nate: "700-1,100 wins"): manifest-voice said
+1,000-1,500 and manifest-blog-post 700-1,100. manifest-voice now says 700-1,100
+(plugin 1.0.1) and so does Manifest's profile.
