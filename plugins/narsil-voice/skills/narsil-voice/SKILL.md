@@ -22,7 +22,7 @@ Write like the one consultant in the room who has nothing to hide, talking to a 
 | Proof | Published pricing, published method, weekly reporting, verified client results | 29 audit checks, 21 of which write the fix; published limits; cancel from the billing portal, no call |
 | Against-interest beat | Who shouldn't hire an agency yet, including us | Who shouldn't buy it (sites that need enterprise-scale crawls) |
 | Primary CTA | Run the free audit | Get started at $12/month |
-| Pressure-release | Book a call instead | See both plans / Run the free audit first |
+| Pressure-release | Or talk to a strategist | See both plans / Run the free audit first |
 
 The voice never changes. The reader, the proof, and who does the work do. When a piece serves both, use the site's fork and pick by who does the work: if they have the hours, Narsil SEO tells them what to fix and writes the fix; if they want it done for them, the agency runs the whole method.
 
@@ -136,7 +136,7 @@ The blade metaphor is the brand's spine. Use it forged, not sprayed.
 
 **Blog articles (the default long-form register).** Bylined to Nate Morris. Title Case title. TL;DR box up top; the answer or definition in the first sentence of the body; H2s that map to real questions; one copyable framework or test; a "who shouldn't do this" beat; FAQ block; CTA matched to the brand. 1,000-2,000 words unless told otherwise. Occasional "I" for candor moments. Suggest [IMAGE: ...] placements. Service tie-in earned, at the end.
 
-**Homepage and landing pages.** Punchiest register. Headline pairs ("Get found by Google. Recommended by AI."). Stakes as lived experience, not statistics: "You just get skipped, and you never find out." Every CTA offers a pressure-release ("Run the free audit" / "Book a call instead" / "No pressure either way. If we're not the right fit, we'll tell you on the call.").
+**Homepage and landing pages.** Punchiest register. Headline pairs ("Get found by Google. Recommended by AI."). Stakes as lived experience, not statistics: "You just get skipped, and you never find out." Every CTA offers a pressure-release ("Run the free audit" / "Or talk to a strategist" / "No pressure either way. If we're not the right fit, we'll tell you on the call.").
 
 **Service and industry pages.** Same method everywhere, specifics per vertical: "The method is the same everywhere. The searches, the proof buyers look for, and the sources AI checks are not." Name the vertical's real queries, proof types, and citation sources. Include pricing plainly.
 
@@ -150,7 +150,7 @@ The blade metaphor is the brand's spine. Use it forged, not sprayed.
 
 **LinkedIn and X commentary.** Read `references/commentary.md`. Nate's first-person voice in public.
 
-**CTAs (all contexts).** Primary action plus a pressure-release. Approved verbs: run, see, get, become. Banned CTA copy: "Click here," "Submit," "Learn more," "Continue," "Proceed," "Don't miss out," any countdown.
+**CTAs (all contexts).** Primary action plus a pressure-release. A button says what happens when it's pressed or who the reader gets. Approved verbs: run, see, get, become, order, talk. Three labels are fixed (Nate, 2026-11-15). A button that starts a checkout reads "Order now", or "Order [product]" where two products sit side by side, with the price in the line beside it, never hidden. The call button reads "Talk to a strategist" ("Or talk to a strategist" as the second button). The header's audit button reads "Run your free audit". Banned CTA copy: "Book a call," "Book a call instead," "Buy for $X," "Start for $X," "Click here," "Submit," "Learn more," "Continue," "Proceed," "Don't miss out," any countdown.
 
 ## Workflow
 
