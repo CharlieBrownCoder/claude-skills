@@ -1,0 +1,10 @@
+{
+  "business": "Narsil Creative",
+  "label": "AI SEO, AEO, GEO",
+  "headline": "Be the business they name.",
+  "emphasis": "name.",
+  "subline": ["On Google", "In AI Overviews", "In ChatGPT"],
+  "colors": { "background": "#16181d", "text": "#faf9f7", "accent": "#e05a2b" },
+  "fonts": { "regular": "Geist-400.woff", "bold": "Geist-700.woff" },
+  "logo": "narsil-tile.svg"
+}

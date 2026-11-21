@@ -24,6 +24,11 @@
       "name": "jaxhumor-voice",
       "source": "./plugins/jaxhumor-voice",
       "description": "The Jax Humor voice (0.1, partial): deadpan, specific, affectionate Jacksonville comedy."
+    },
+    {
+      "name": "chatgpt-business-hub-builder",
+      "source": "./plugins/chatgpt-business-hub-builder",
+      "description": "A ChatGPT Business Hub profile, cover photo and Business Agent for Narsil Creative or a client, built from their live site."
     }
   ]
 }

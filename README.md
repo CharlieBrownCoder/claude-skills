@@ -9,6 +9,7 @@ copy serves every repo and org. Private; internal use only.
 | `narsil-voice` | The Narsil voice (Narsil Creative and Narsil SEO), with the humanizer pass and `deslop_check.py`. |
 | `manifest-voice` | The Manifest brand voice. |
 | `jaxhumor-voice` | The Jax Humor voice. Version 0.1 is partial: its README says what is still owed. |
+| `chatgpt-business-hub-builder` | A ChatGPT Business Hub profile, cover photo and Business Agent for Narsil Creative or a client, built from their live site. |
 
 The voice plugins are the ONLY copy of each voice from 2026-11-02. Edit them
 here and bump the plugin's `version`; each plugin's README says what other

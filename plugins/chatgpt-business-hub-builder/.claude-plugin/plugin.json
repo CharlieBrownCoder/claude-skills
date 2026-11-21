@@ -1,0 +1,8 @@
+{
+  "name": "chatgpt-business-hub-builder",
+  "description": "Build a ChatGPT Business Hub profile, its cover photo, and Business Agent (instructions, Business Info, tagline, conversation starters) for Narsil Creative or a client, from their live site.",
+  "version": "1.1.0",
+  "author": { "name": "CharlieBrownCoder" },
+  "repository": "https://github.com/CharlieBrownCoder/claude-skills",
+  "keywords": ["chatgpt", "business-hub", "profile", "agent", "cover-photo"]
+}
